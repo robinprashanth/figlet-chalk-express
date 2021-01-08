@@ -22,6 +22,7 @@ router.get('/api/console', (req, res) => {
     // nothing here
   }
   console.timeEnd("timer");
+
   // Beautify log. This does not work on terminals but works on browsers.
   console.log("%c Beautify log. This does not work on terminals but works on browsers.",
   "background-color: fuchsia ; color: white ; font-weight: bold ; " +

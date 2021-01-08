@@ -23,8 +23,8 @@ app.get('/', (req, res) => {
   res.send([
     {
       "name": "signup",
-      "route": "http://localhost:3000/api/users/signup",
-      "type": "post",
+      "path": "http://localhost:3000/api/users/signup",
+      "method": "post",
       "postBodyExample": {
         "email": "test@gmail.com",
         "password": "Standarssd"
@@ -32,34 +32,34 @@ app.get('/', (req, res) => {
     },
     {
       "name": "signin",
-      "type": "post",
-      "route": "http://localhost:3000/api/users/signin"
+      "method": "post",
+      "path": "http://localhost:3000/api/users/signin"
     },
     {
       "name": "signout",
-      "type": "post",
-      "route": "http://localhost:3000/api/users/signout"
+      "method": "post",
+      "path": "http://localhost:3000/api/users/signout"
     },
     {
       "name": "chalk - Terminal string styling using chalk package https://www.npmjs.com/package/chalk",
-      "type": "get",
-      "route": "http://localhost:3000/api/chalk"
+      "method": "get",
+      "path": "http://localhost:3000/api/chalk"
     },
     {
       "name": "figlet - is a program for making large letters out of ordinary text.",
-      "type": "post",
+      "method": "post",
       "postBodyExample": {
         "name": "test",
         "font": "Standard || Row || 3-D || 3D Diagonal  || 3D-ASCII|| AMC Thin|| Banner|| Banner3-D",
         "horizontalLayout": "default || full|| fitted || controlled smushing || universal smushing'",
         "verticalLayout": "default || full|| fitted || controlled smushing || universal smushing'"
       },
-      "route": "http://localhost:3000//api/figlet"
+      "path": "http://localhost:3000/api/figlet"
     },
     {
       "name": "console - The console object provides access to the browser's debugging console ",
-      "type": "get",
-      "route": "http://localhost:3000//api/console"
+      "method": "get",
+      "path": "http://localhost:3000/api/console"
     }
   ]);
 });
@@ -86,18 +86,18 @@ const start = () => {
     }
     console.log(chalk.blue(data));
     
-    // try {
-    //   logger.info("connecting to db");
-    //   await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
-    //     useNewUrlParser: true,
-    //     useUnifiedTopology: true,
-    //     useCreateIndex: true
-    //   });
-    //   logger.info('Connected to MongoDb');
-    // } catch (err) {
-    //   logger.warn('Failed to connect to MongoDb');
-    //   logger.warn(err);
-    // }
+    try {
+      logger.info("connecting to db");
+      await mongoose.connect('mongodb://auth-mongo-srv:27017/auth', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+      });
+      logger.info('Connected to MongoDb');
+    } catch (err) {
+      logger.warn('Failed to connect to MongoDb');
+      logger.warn(err);
+    }
   
     app.listen(3000, () => {
       logger.info('Start success and listening on port 3000!');

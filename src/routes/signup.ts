@@ -37,8 +37,8 @@ router.post(
       throw new BadRequestError('Email in use');
     } else {
       users.push(email);
+      logger.debug("User added successfully");
     }
-
 
     res.status(201).send({user: email});
   }
