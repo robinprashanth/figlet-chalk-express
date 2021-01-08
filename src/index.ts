@@ -4,7 +4,6 @@ import { json } from 'body-parser';
 import mongoose from 'mongoose';
 import figlet from 'figlet';
 import chalk  from 'chalk';
-import inquirer  from 'inquirer';
 import * as logger from './util/logger'
 
 import { signinRouter } from './routes/signin';
@@ -108,43 +107,3 @@ const start = () => {
 };
 
 start();
-
-process.on ('SIGINT', () => {
-  logger.warn('Enter "Y" to shut down');
-});
-
-process.on('SIGTERM', () => {
-  logger.info('ending SIGTERM');
-  let questions = [
-    {
-      type : "input",
-      name : "sender.email",
-      message : "Sender's email address - "
-    },
-    {
-      type : "input",
-      name : "sender.name",
-      message : "Sender's name - "
-    },
-    {
-      type : "input",
-      name : "subject",
-      message : "Subject - "
-    }
-  ];
-  inquirer.prompt(questions)
-  .then(answers => {
-    logger.info('ending2 SIGTERM');
-    if(answers && answers === "Y") {
-      process.exit(1);
-    }
-  })
-  .catch(error => {
-    logger.info('ending3 SIGTERM');
-    if(error.isTtyError) {
-      process.exit(1);
-    } else {
-      process.exit(1);
-    }
-  });
-})
